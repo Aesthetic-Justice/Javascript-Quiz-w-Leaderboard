@@ -11,18 +11,21 @@
 </head>
 
 <body>
-    <h1 class="text">Welcome to the Great WebDev Quiz</h1>
-    <!--High Score goes here-->
-    <!--Timer goes here-->
+    <section class="grid-container">
+        <h2 class="text" id="btn-HighScores">View Highscores</h2>
+        <h1 class="text">Welcome to the Great WebDev Quiz</h1>
+        <h2 class="text" id="timer">Time: </p>
+    </section>
     <main>
-        <h2 id="question" class="text">Press Start to begin</h2>
+        <h2 id="question" class="text">Press Start to begin
+        </h2>
+        <button class="btn" id="startBtn">Start</button>
         <section class="grid-container" id="questionBox">
-            <button class="btn" id="startBtn">Start</button>
-            <button class="btn, hide" data-num="1" data-state="visible">Lorem Ipsum Button</button>
-            <button class="btn, hide" data-num="2" data-state="visible">Lorem Ipsum Button</button>
-            <button class="btn, hide" data-num="3" data-state="visible">Lorem Ipsum Button</button>
-            <button class="btn, hide" data-num="4" data-state="visible">Lorem Ipsum Button</button>
-            <p class="subtext, hide">This is the subtext</p>
+            <button class="btn" data-num="0">Lorem Ipsum Button</button>
+            <button class="btn" data-num="1">Lorem Ipsum Button</button>
+            <button class="btn" data-num="2">Lorem Ipsum Button</button>
+            <button class="btn" data-num="3">Lorem Ipsum Button</button>
+            <p class="subtext" id="subtext"></p>
         </section>
     </main>
 

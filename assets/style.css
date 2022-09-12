@@ -27,26 +27,25 @@ main{
 
 .grid-container{
     display: grid;
-    justify-items: center;
     grid-template-columns: auto 20% auto;
     min-width: fit-content;
     grid-gap: 10px;
     padding: 10px;
 }
 
-.grid-container>*{
+.grid-container>p,.grid-container>button{
     grid-column: 2/span 1;
     color:grey;
     border-top: 1px solid azure;
+    justify-self: right;
     padding-top: 20px;
     font-size: 20px;
+    width: 500px;
 }
 
 .btn{
-    width: 500px;
     cursor:pointer;
     display:inline-block;
-    justify-self: right;
     color:grey;
     background-color:antiquewhite;
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
@@ -63,20 +62,32 @@ main{
 }
 
 #startBtn{
-    justify-self: center;
+    display: block;
+    margin:auto;
 }
 
 h1{
     font-size: 50px;
     min-width: fit-content;
+    text-align: center;
 }
 
 h2{
     font-size: 36px;
-    padding-left: 100px;
 }
 
+h2>*{
+    font-size: 16px;
+}
 
-.hide{
-    display:none;
+#btn-HighScores{
+    text-align: left;
+}
+
+#timer{
+    text-align: right;
+}
+
+#subtext{
+    opacity: 0;
 }

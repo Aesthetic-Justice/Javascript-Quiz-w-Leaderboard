@@ -1,27 +1,36 @@
 let leaderboard = []; //Global array for storing scores outside game loop
 let startBtn = document.getElementById('startBtn'); //Start Button
-let timeLeft = 00;
+let questionBox = document.getElementById('questionBox'); //Question boxes
+let questionText = document.getElementById('question'); //Question Text
+let timerEl = document.getElementById('timer');
+let timeLeft = 00;//Timer
+let curQuestion = 00;//Tracks current question
+let unAdQs = [];//Questions remaining
+let score = 0;//Correctly answered questions
 
 //Core game loop
 function startGame() {
-    let questionBox = document.getElementById('questionBox');
-    if(timeLeft===00){
-        timeLeft=75;
+    if (timeLeft === 00) {
+        timeLeft = 75;
+        timerEl.textContent = 'Time: ' + timeLeft;
         let timeInterval = setInterval(function () {
-            if (timeLeft >= 1) {
-                //Do Thing
-                //Update timer
-                console.log(timeLeft);
+            if (timeLeft >= 0) {
                 timeLeft--;
+                timerEl.textContent = 'Time: ' + timeLeft;
             }
 
             else {
                 clearInterval(timeInterval);//kill the timer loop
-                timeLeft=00;
-                //End the game
+                timeLeft = 00;
+                timerEl.textContent = 'Time: ' + timeLeft;
+                endGame();
             }
         }, 1000);
-    nextQuestion(questionBox);
+
+        unAdQs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];//Used keep track of questions
+        startBtn.style.display = 'none';//Hides the start button    
+        questionBox.children[4].className = "subtext";//unhides the subtext
+        nextQuestion();//Prepares the first question
     }
 }
 
@@ -130,13 +139,63 @@ let questions = [
     }
 ]
 
-//Updates questions
-function nextQuestion(qBox) {
-    console.log('Test');
-    qBox.children[1].className = 'btn';
+//Clears the question box
+function clearQuestion() {
+    for (let i = 0; i < questionBox.children.length-1; i++) {
+        questionBox.children[i].style.display='none';
+    }
 }
 
+//Updates questions
+function nextQuestion() {
+    clearQuestion();
+    let x = Math.floor(Math.random() * unAdQs.length);//Picks a rand Q from available options
+    curQuestion = unAdQs[x];//Sets current question globally
+    unAdQs = unAdQs.filter(item => item != curQuestion);//Removes picked Q from available options
+   
+   
+    questionText.textContent = questions[curQuestion].question;//Updates question text
+    for (let i = 0; i < questions[curQuestion].answers.length; i++) {//Updates answer boxes
+        questionBox.children[i].textContent = questions[curQuestion].answers[i].text;
+        questionBox.children[i].style.display='inline-block';
+    }
+}
 
-//Starts the game
-startBtn.addEventListener('click', startGame);
+function answerQuestion(event){
+    let answerNum = event.target.getAttribute('data-num');
+    console.log('Answer is: '+answerNum);
+    if(questions[curQuestion].answers[answerNum].bool==true){
+        questionBox.children[4].textContent = 'Correct!';
+        questionBox.children[4].style.opacity=1;
+        score++;
+    }
+    else{
+        questionBox.children[4].textContent = 'Incorrect!';
+        questionBox.children[4].style.opacity=1;
+    }
+    if(unAdQs.length!=0){
+        nextQuestion();
+    }
+    else{
+        endGame();
+    }
+}
 
+document.addEventListener('click', function (event) {
+    if (!event.target.classList.contains('btn')) return;
+
+    else if (event.target == startBtn) {
+        startGame();
+    }
+
+    else{
+        answerQuestion(event);
+    }
+
+}, false);
+
+function startUp(){
+    clearQuestion();
+}
+
+startUp();
