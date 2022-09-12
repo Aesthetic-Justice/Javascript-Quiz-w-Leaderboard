@@ -16,20 +16,7 @@ body{
     /*color: #444;*/
     color:antiquewhite;
     margin: 20px auto;
-    text-align: center;
     max-height: 270px;
-}
-
-h1{
-    font-size: 50px;
-    min-width: fit-content;
-}
-
-h2{
-    font-size: 36px;
-    margin:auto;
-    text-align: center;
-
 }
 
 main{
@@ -40,6 +27,7 @@ main{
 
 .grid-container{
     display: grid;
+    justify-items: center;
     grid-template-columns: auto 20% auto;
     min-width: fit-content;
     grid-gap: 10px;
@@ -58,6 +46,7 @@ main{
     width: 500px;
     cursor:pointer;
     display:inline-block;
+    justify-self: right;
     color:grey;
     background-color:antiquewhite;
     transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
@@ -72,6 +61,21 @@ main{
 .btn:hover{
     background-color: azure;
 }
+
+#startBtn{
+    justify-self: center;
+}
+
+h1{
+    font-size: 50px;
+    min-width: fit-content;
+}
+
+h2{
+    font-size: 36px;
+    padding-left: 100px;
+}
+
 
 .hide{
     display:none;
