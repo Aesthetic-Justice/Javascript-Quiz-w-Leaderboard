@@ -99,3 +99,22 @@ h2>*{
     opacity: 0;
 }
 
+#endScreen>form{
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form>p{
+    padding: 10px;
+    color:antiquewhite;
+}
+#form>input{
+    padding: 5px;
+    margin-right: 20px;
+}
+
+#initials{
+    height: 10px;
+}

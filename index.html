@@ -16,7 +16,7 @@
         <h1 class="text" id="title">Welcome to the Great WebDev Quiz</h1>
         <h2 class="text" id="timer">Time: </p>
     </section>
-    <main>
+    <main id="main">
         <h2 id="question" class="text">Press Start to begin
         </h2>
         <button class="btn" id="startBtn">Start</button>
@@ -27,17 +27,18 @@
             <button class="btn" data-num="3">Lorem Ipsum Button</button>
             <p class="subtext" id="subtext"></p>
         </section>
-        <section>
-            <ul class="grid-container">
-                <li>test1</li>
-                <li>test2</li>
-                <li>test2</li>
-                <li>test2</li>
-                <li>test2</li>
-                <li>test2</li>
-            </ul>
+        <section style="display: none" id="endScreen">
+            <form id="form">
+                <p>Enter initials: </p>
+                <input type="text" id="initials" placeholder="AAA"/>
+                <button class="btn" id="submit">Submit</button>
+            </form>
         </section>
     </main>
+    <section style="display: none" id="scoreScreen">
+        <ul class="grid-container">
+        </ul>
+    </section>
 
     <script src="./assets/script.js"></script>
 </body>
