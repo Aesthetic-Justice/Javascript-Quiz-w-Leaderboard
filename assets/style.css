@@ -43,6 +43,13 @@ main{
     width: 500px;
 }
 
+ul>li{
+    grid-column: 2/2;
+    font-size: 32px;
+    font-weight: bold;
+    background-color: aqua;
+}
+
 .btn{
     cursor:pointer;
     display:inline-block;
@@ -91,3 +98,4 @@ h2>*{
 #subtext{
     opacity: 0;
 }
+
