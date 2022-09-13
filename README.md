@@ -12,7 +12,13 @@ N/A
 
 ## Usage
 
-
+Attached to this Github and [linked here]() are portals to the site in question.
+To start the quiz, click the button in the center of the screen labelled Start
+![alt text](./assets/imgs/StartPage.jpg "Start-Page")
+Afterwards, you'll be given multiple choice questions with a number of choices to pick, so choose wisely
+![alt text](./assets/imgs/midQuiz.jpg "Mid-Quiz")
+Once you've completed the quiz, feel free to enter your initials to locally save your score to compare against later
+![alt text](./assets/imgs/endScreen.jpg "End-Page")
 
 ## Credits
 
