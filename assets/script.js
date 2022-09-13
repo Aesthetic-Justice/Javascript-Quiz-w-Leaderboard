@@ -4,38 +4,50 @@ let questionBox = document.getElementById('questionBox'); //Question boxes
 let questionText = document.getElementById('question'); //Question Text
 let timerEl = document.getElementById('timer');
 let timeLeft = 00;//Timer
+let timeInterval;//Timer function
 let curQuestion = 00;//Tracks current question
 let unAdQs = [];//Questions remaining
-let score = 0;//Correctly answered questions
 
 //Core game loop
 function startGame() {
     if (timeLeft === 00) {
         timeLeft = 75;
+        score=0;
         timerEl.textContent = 'Time: ' + timeLeft;
-        let timeInterval = setInterval(function () {
-            if (timeLeft >= 0) {
+        timeInterval = setInterval(function () {
+            if (timeLeft > 0) {
                 timeLeft--;
+                console.log(timeLeft);
                 timerEl.textContent = 'Time: ' + timeLeft;
             }
 
             else {
-                clearInterval(timeInterval);//kill the timer loop
                 timeLeft = 00;
                 timerEl.textContent = 'Time: ' + timeLeft;
                 endGame();
+                clearInterval(timeInterval);//kill the timer loop
             }
         }, 1000);
 
+        document.getElementById("title").textContent='';
         unAdQs = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];//Used keep track of questions
-        startBtn.style.display = 'none';//Hides the start button    
-        questionBox.children[4].className = "subtext";//unhides the subtext
+        startBtn.style.display = 'none';//Hides the start button
+        questionBox.children[4].style.opacity=1;//Reveals the subtext
         nextQuestion();//Prepares the first question
     }
 }
 
 function endGame() {
+    clearInterval(timeInterval);//Stop the timer
+    const finalTime = timeLeft;//Record the final timer
 
+
+    for (let i = 0; i < questionBox.children.length; i++) {
+        questionBox.children[i].style.display='none';
+    }
+
+    document.getElementById("title").textContent='Quiz Complete!'
+    questionText.textContent='Your final score is '+timeLeft;
 }
 
 let questions = [
@@ -163,15 +175,13 @@ function nextQuestion() {
 
 function answerQuestion(event){
     let answerNum = event.target.getAttribute('data-num');
-    console.log('Answer is: '+answerNum);
     if(questions[curQuestion].answers[answerNum].bool==true){
         questionBox.children[4].textContent = 'Correct!';
-        questionBox.children[4].style.opacity=1;
-        score++;
     }
     else{
-        questionBox.children[4].textContent = 'Incorrect!';
-        questionBox.children[4].style.opacity=1;
+        questionBox.children[4].textContent = 'Incorrect! -10 seconds';
+        timeLeft=timeLeft-10;
+        timerEl.textContent = 'Time: ' + timeLeft;
     }
     if(unAdQs.length!=0){
         nextQuestion();
